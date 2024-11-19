@@ -94,34 +94,10 @@ story=story_generator()
 # story_generator()
 # story_generator2()
 
-from langchain_core.chat_history import(BaseChatMessageHistory,InMemoryChatMessageHistory,)
-from langchain_core.runnables.history import RunnableWithMessageHistory
-# store = {}
+
 model = ChatGroq(model="llama3-8b-8192")
-# parser = StrOutputParser()
-# chain = model | parser
-# def get_session_history(session_id: str) -> BaseChatMessageHistory:
-#     if session_id not in store:  # If a new session then create a new memory store.
-#         store[session_id] = InMemoryChatMessageHistory()
-#     return store[session_id]
-# config = {'configurable': {"session_id": "Sesssion-1"}}
-# newHistory = RunnableWithMessageHistory(model, get_session_history)
-# withHistory = RunnableWithMessageHistory(model, get_session_history)
-# response = newHistory.invoke([HumanMessage(f'{story}')], config=config)
 
-# print(response.content) # all good so far
-
-# # we dont need to explicitly store the response from the model in history
-
-# response = withHistory.invoke(
-#     [HumanMessage(content=input('Tell if you want to make changes to your story? Tell if any: '))], config=config
-# )
-
-# print(response.content)
-
-
-
-from langchain_core.chat_history import(BaseChatMessageHistory,InMemoryChatMessageHistory,)
+from langchain_core.chat_history import(InMemoryChatMessageHistory)
 import asyncio
 store=InMemoryChatMessageHistory()
 
