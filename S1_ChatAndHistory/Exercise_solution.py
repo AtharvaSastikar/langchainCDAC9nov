@@ -108,31 +108,25 @@ async def func1():
     print(response.content)
     store.add_message(SystemMessage(content=response.content))
 async def func2():
-    await asyncio.sleep(2)  # Simulate delay or allow other processes
-    # Add a system message for context
+    await asyncio.sleep(2)  
     system_message_content = "Please ensure the story aligns with the requested changes and return the output in paragraphs."
     store.add_message(SystemMessage(content=system_message_content))
-    
-    # Add a human message based on user input
+
     user_input = input("Tell if you want to make changes to your story: ")
     store.add_message(HumanMessage(content=user_input))
 
-    # Retrieve the updated message history
     messages = await store.aget_messages()
     print("Messages so far:", messages)
 
-    # Invoke the model with the updated history
     response = model.invoke(messages)
     print("Model Response:", response.content)
 
-    # Add the model's response to the chat history
     store.add_message(SystemMessage(content=response.content))
 
 async def main():
     await func1()
     await func2()
 
-# Run the async workflow
 story = story_generator()
 asyncio.run(main())
                                                                                                      
